@@ -5,39 +5,41 @@ document.addEventListener("DOMContentLoaded", function() {
     let consentBox = document.getElementById("consent-group");
     let consentCheckbox = document.getElementById("consent");
 
-    function updateBackgrounds() {
+    function updateBackgroundsandBorder() {
         generalBox.style.backgroundColor = document.getElementById("general").checked ? 'var(--light-green)' : 'white';
+        generalBox.style.border = document.getElementById("general").checked ? '1.5px solid var(--medium-green)' : '1px solid var(--border-color)';
         supportBox.style.backgroundColor = document.getElementById("support").checked ? 'var(--light-green)' : 'white';
+        supportBox.style.border = document.getElementById("support").checked ? '1.5px solid var(--medium-green)' : '1px solid var(--border-color)';
     }
 
     radioButtons.forEach(function(radioButton) {
-        radioButton.addEventListener('change', updateBackgrounds);
+        radioButton.addEventListener('change', updateBackgroundsandBorder);
     });
 
-    // Initialize the background colors on page load
-    updateBackgrounds();
+    // Initialize the background colors and borders on page load
+    updateBackgroundsandBorder();
 
     generalBox.addEventListener("click", function() {
         document.getElementById("general").checked = true;
-        updateBackgrounds();
+        updateBackgroundsandBorder();
     });
 
     supportBox.addEventListener("click", function() {
         document.getElementById("support").checked = true;
-        updateBackgrounds();
+        updateBackgroundsandBorder();
     });
 
     generalBox.addEventListener("keydown", function(event) {
         if (event.key === "Enter" || event.key === " ") {
             document.getElementById("general").checked = true;
-            updateBackgrounds();
+            updateBackgroundsandBorder();
         }
     });
 
     supportBox.addEventListener("keydown", function(event) {
         if (event.key === "Enter" || event.key === " ") {
             document.getElementById("support").checked = true;
-            updateBackgrounds();
+            updateBackgroundsandBorder();
         }
     });
 
@@ -68,42 +70,51 @@ document.addEventListener("DOMContentLoaded", function() {
         let consentErr = document.getElementById("consentErr");
 
 
-        firstNameErr.style.visibility = "hidden";
-        lastNameErr.style.visibility = "hidden";
-        emailErr.style.visibility = "hidden";
-        queryErr.style.visibility = "hidden";
-        messageErr.style.visibility = "hidden";
-        consentErr.style.visibility = "hidden";
+        firstNameErr.style.display = "none";
+        lastNameErr.style.display = "none";
+        emailErr.style.display = "none";
+        queryErr.style.display = "none";
+        messageErr.style.display = "none";
+        consentErr.style.display = "none";
+
+        firstNameInput.style.border = "";
+        lastNameInput.style.border = "";
+        emailInput.style.border = "";
+        messageInput.style.border = "";
 
         let isFormValid = true;
 
         if(firstNameInput.value.trim() === ''){
-            firstNameErr.style.visibility = "visible";
+            firstNameErr.style.display = "block";
+            firstNameInput.style.border = "1px solid red";
             isFormValid = false;
         }
 
         if(lastNameInput.value.trim() === '') {
-            lastNameErr.style.visibility = "visible";
+            lastNameErr.style.display = "block";
+            lastNameInput.style.border = "1px solid red";
             isFormValid = false;
         }
 
         if(emailInput.value.trim() === '') {
-            emailErr.style.visibility = "visible";
+            emailErr.style.display = "block";
+            emailInput.style.border = "1px solid red";
             isFormValid = false;
         }
 
         if(!Array.from(queryInput).some(input => input.checked)) {
-            queryErr.style.visibility = "visible";
+            queryErr.style.display = "block";
             isFormValid = false;
         }
 
         if(messageInput.value.trim() === '') {
-            messageErr.style.visibility = "visible";
+            messageErr.style.display = "block";
+            messageInput.style.border = "1px solid red";
             isFormValid = false;
         }
 
         if(!consentInput.checked) {
-            consentErr.style.visibility = "visible";
+            consentErr.style.display = "block";
             isFormValid = false;
         }
 
@@ -112,9 +123,18 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             event.preventDefault();
             showNotification();
-            this.reset()
+            this.reset();
+            resetStyles();
         }
     });
+
+    function resetStyles() {
+        let formElements = document.querySelectorAll('input[type="text"], input[type="email"], textarea, input[type="radio"]');
+        formElements.forEach(element => {
+            element.style.border = "";
+        });
+        updateBackgroundsandBorder();
+    }
 
     function showNotification() {
         const toastContainer = document.getElementById('toastContainer');
