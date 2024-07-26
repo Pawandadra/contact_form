@@ -1,23 +1,14 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Karla', sans-serif;
-    font-size: 1rem;
-}
-
 :root{
     --light-green: hsl(148, 38%, 91%);
     --medium-green: hsl(169, 82%, 27%);
     --red: hsl(0, 66%, 54%);
     --medium-grey: hsl(186, 15%, 59%);
     --darker-grey: hsl(187, 24%, 22%);
-    --border-color: hsl(149, 36%, 69%);
+    --border-color: hsl(0, 1%, 68%);
     --border-radius: 7px;
 }
 
 .errmsg{
-    /* font-size: 0.7rem; */
     margin-top: 0.5rem;
     margin-bottom: -0.5rem;
     color: var(--red);
@@ -27,37 +18,10 @@
 .star{
     color: var(--medium-green);
 }
-  
-body {
-    background-color: var(--light-green);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-  
+
 .formContainer {
     width: 70%;
     max-width: 700px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    color: var(--darker-grey);
-    /* height: 70%; */
-    max-height: 1000px;
-}
-  
-.contactForm {
-    display: flex;
-    flex-direction: column;
-}
-  
-.contactForm #heading {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    color: var(--darker-grey);
 }
   
 .form-group {
@@ -67,6 +31,7 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
+    text-align: left;
 }
   
 .contactForm input[type="text"],
@@ -77,6 +42,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     outline: none;
+    background-color: transparent;
 }
 
 .contactForm input[type="text"]:hover,
@@ -85,9 +51,9 @@ body {
 .contactForm input[type="email"]:focus,
 .contactForm textarea:hover,
 .contactForm textarea:focus{
-    border: 1.5px solid var(--medium-green);
+    border: 1.5px solid white;
 }
-  
+
 .name-fields {
     display: flex;
     gap: 1rem;
@@ -95,93 +61,6 @@ body {
   
 .half-width {
     flex: 1;
-}
-
-.query-type {
-    margin-bottom: 2rem;
-    margin-top: 1rem;
-}
-
-.query-type input[type="radio"]{
-    display: none;
-}
-
-.query-type .half-width {
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.query-type .half-width::before {
-    content: '';
-    position: absolute;
-    left: 20px;
-    width: 12px;
-    height: 12px;
-    border: 2px solid lightgray;
-    border-radius: 50%;
-    background-color: white;
-}
-
-.hidden-before::before {
-    visibility: hidden;
-}
-
-.query-type input[type="radio"]:checked + label::before {
-    border-color: var(--medium-green);
-}
-
-.query-type input[type="radio"]:checked + label::after {
-    content: '';
-    position: absolute;
-    left: 20.3px;
-    top: 13.56px;
-    width: 15.5px;
-    height: 16.5px;
-    background-image: url("./images/icon-radio-selected.svg");
-    border-radius: 50%;
-}
-
-.query-type label {
-    margin-left: 2rem;
-    margin-bottom: 0.1rem;
-    padding: 4px;
-}
-
-.query-type p{
-    margin-bottom: 0.5rem;
-}
-
-.radio-group {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.query-type input[type="radio"] + label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-#generalBox,
-#supportBox{
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    outline: none;
-}
-
-#generalBox:focus,
-#generalBox:active,
-#supportBox:active,
-#supportBox:focus{
-    border: 1.5px solid var(--medium-green);
-    background-color: var(--light-green);
 }
 
 #message{
@@ -211,7 +90,7 @@ body {
     height: 18px;
     border: 2px solid lightgray;
     border-radius: 4px;
-    background-color: white;
+    background-color: transparent;
 }
 
 .consent-group input[type="checkbox"]:checked + label::after {
@@ -232,6 +111,7 @@ body {
 }
   
 .contactForm button {
+    width: 100%;
     padding: 1rem;
     background-color: hsl(169, 82%, 27%);
     color: white;
@@ -308,15 +188,6 @@ body {
     .name-fields {
         display: block;
     }
-
-    .radio-group {
-        display: block;
-    }
-    
-    #generalBox,
-    #supportBox{
-        margin-top: 1rem;
-    }
     
     .consent-group input[type="checkbox"]:checked + label::after {
         left: 2px;
@@ -333,25 +204,5 @@ body {
     .consent-group input[type="checkbox"]:checked + label::after {
         left: 2px;
         top: 17px;
-    }
-}
-
-@media only screen and (min-height: 800px) and (max-height: 945px){
-    
-    body {
-        height: 110vh;
-    }
-}
-
-@media only screen and (min-height: 670px) and (max-height: 800px){
-    
-    body {
-        height: 130vh;
-    }
-}
-
-@media only screen and (max-height: 670px){
-    body{
-        height: 140vh;
     }
 }
